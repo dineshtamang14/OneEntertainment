@@ -1,111 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Entertainment</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-        .navbar {
-            transition: background-color 0.3s;
-        }
-        .navbar.scrolled {
-            background-color: rgba(220, 38, 38, 0.9);
-        }
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1514526536065-2cb677f5c4f8?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Entertainment - N-Pop Innovation</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/727/727245.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #111;
+    }
+    .artist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .artist img {
+      width: 100%;
+      max-width: 300px;
+      object-fit: cover;
+    }
+    .artist-details {
+      flex: 1;
+      padding: 1rem;
+    }
+    .cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .cta a {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .cta a:hover {
+      background: #333;
+    }
+    footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .lyrics-dropdown {
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #fff;
+    }
+    .lyrics-header {
+      padding: 1rem;
+      cursor: pointer;
+      background: #eee;
+      font-weight: 600;
+    }
+    .lyrics-content {
+      display: none;
+      padding: 1rem;
+      white-space: pre-wrap;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .artist {
+        flex-direction: column;
+        align-items: center;
+      }
+      .artist img {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-100">
-    <!-- Navbar -->
-    <nav class="navbar fixed top-0 w-full text-white py-4 z-50">
-        <div class="container mx-auto flex justify-between items-center px-6">
-            <div class="flex items-center">
-                <img src="https://via.placeholder.com/50?text=Logo" alt="One Entertainment Logo" class="h-10 mr-2">
-                <h1 class="text-2xl font-bold">One Entertainment</h1>
-            </div>
-            <div class="space-x-6">
-                <a href="#home" class="hover:text-purple-300">Home</a>
-                <a href="#about" class="hover:text-purple-300">About</a>
-                <a href="#artists" class="hover:text-purple-300">Artists</a>
-                <a href="#contact" class="hover:text-purple-300">Contact</a>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero h-screen flex items-center justify-center text-center text-white">
-        <div>
-            <h1 class="text-5xl font-bold mb-4">Welcome to One Entertainment</h1>
-            <p class="text-xl mb-6">Bringing Nepal’s Music to the Global Stage</p>
-            <a href="#artists" class="bg-purple-600 text-white py-2 px-6 rounded-full hover:bg-purple-700">Discover Our Artists</a>
-        </div>
-    </section>
+<header>
+  <h1>One Entertainment</h1>
+  <p>Pioneering N-Pop innovation: blending Nepali heritage with Bollywood's global influence.</p>
+</header>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold text-red-600 mb-8">About Us</h2>
-            <p class="text-lg text-gray-700 mb-6">
-                Based in Kathmandu, Nepal, One Entertainment is a boutique music management startup dedicated to creating a K-Pop-inspired music environment. We fuse Nepali culture with global sounds like EDM and hip-hop, empowering youth and redefining music on a global scale.
-            </p>
-            <div class="flex justify-center">
-                <img src="https://images.unsplash.com/photo-1507521628349-11f3d7d2b0e5?q=80&w=2070&auto=format&fit=crop" alt="South Asian team collaborating in a music studio" class="rounded-lg shadow-lg h-96">
-            </div>
-        </div>
-    </section>
+<section>
+  <h2>About N-Pop</h2>
+  <p>At One Entertainment, we're crafting a new genre: N-Pop. Rooted in Nepal's traditions, elevated with Bollywood rhythms, and expressed in bilingual lyrics, N-Pop bridges cultures and connects hearts.</p>
+</section>
 
-    <!-- Artists Section -->
-    <section id="artists" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold text-red-600 mb-8">Our Artists</h2>
-            <div class="flex justify-center">
-                <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm">
-                    <img src="https://images.unsplash.com/photo-1512416958702-8e4b92d51688?q=80&w=2070&auto=format&fit=crop" alt="Rohan Gurung performing on stage with madal and EDM setup" class="rounded-lg mb-4 h-64 w-full object-cover">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Rohan Gurung</h3>
-                    <p class="text-gray-600">
-                        A 22-year-old talent from Pokhara, Nepal, Rohan blends madal rhythms with EDM and hip-hop, creating high-energy tracks for Gen Z audiences worldwide.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section>
+  <h2>Meet Our Star: Rohan Gurung</h2>
+  <div class="artist">
+    <img src="rohan.png" alt="Rohan Gurung" />
+    <div class="artist-details">
+      <h3>Rohan Gurung</h3>
+      <p>Rohan is a 20-year-old solo musician from Kathmandu, known for his captivating bilingual performances that merge Nepali melodies with Bollywood beats.</p>
+      <p><strong>Social Reach:</strong><br>
+        Instagram: 221K followers<br>
+        YouTube: 30.1K subscribers (2.3M views)<br>
+        TikTok: 142K followers (1.2M viral views)</p>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold text-red-600 mb-8">Get in Touch</h2>
-            <p class="text-lg text-gray-700 mb-6">Interested in collaborating or learning more? Reach out to us!</p>
-            <div class="flex justify-center space-x-4">
-                <a href="mailto:info@oneentertainment.com" class="bg-purple-600 text-white py-2 px-6 rounded-full hover:bg-purple-700">Email Us</a>
-                <a href="https://www.instagram.com/oneentertainment_np" class="bg-purple-600 text-white py-2 px-6 rounded-full hover:bg-purple-700">Follow on Instagram</a>
-            </div>
-        </div>
-    </section>
+<section>
+  <h2>Our Current Project: “Unki Kya Baat Karein”</h2>
+  <p><strong>Song Description:</strong> “Unki Kya Baat Karein” is a soulful fusion of Hindi and Nepali melodies, featuring Rohan Gurung’s mesmerizing vocals. This bilingual love anthem, produced in collaboration with T-Series, blends traditional instruments and modern Bollywood beats, capturing the essence of a heartfelt, cross-cultural romance.</p>
+  <div style="margin-top:1rem;">
+    <video width="100%" height="400" controls>
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
-    <!-- Footer -->
-    <footer class="bg-red-600 text-white py-4">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 One Entertainment. All rights reserved.</p>
-        </div>
-    </footer>
+  <div class="lyrics-dropdown">
+    <div class="lyrics-header" onclick="toggleLyrics()">Show Lyrics</div>
+    <div class="lyrics-content" id="lyricsContent">
+Kaise Hua Hai Ye Asar Teri Kashti Me
+Dooba Hu Sabko Bhool Ke
 
-    <!-- JavaScript for Navbar Scroll Effect -->
-    <script>
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
+Jabsay Mila Hu Tumse Dil Ki Zabardasti He
+RakhLu Mai Tumko Dhoond Ke
+
+Uski Ek Jhalak Machalti He Dhadak
+Uff Unki Kya Baat Kare
+Naino Kaa Palak Andaz Hee Alag
+Uff Unki Kya Baat Karayy
+
+Beh Kar Sang Sang Jo Hawa
+Teri Zulfon Kii Mehak Lain Aati Hai
+Mere Man Mei Tuu Bhar Jazbaati Tarang
+Uff Unki Kya Baat Karein
+
+Leja Haye Ljaa Maya
+Ailai Nii Jawani Mqa KahaKaha Dulaucchau Mana
+Ho Maiya Aakkhi Maiya Maya LyricsRead.com
+Raaton Raat Sari Ma Kaha Kaha Bolaucchau Bana
+
+LeKar Aaun Mai Jo Pasand Ho DeDe AwaaZ
+Karde Bas Mitthi Mitthi Baate
+Ban Jaaun Raja Tuu Bhi Ban Meri Raani
+Aaj Ho Jaye Dil Kii Mulakatein
+
+Hilti Hai Matak Matak Jo Kamar Hai
+DeDe Ab No. Hai
+Baat Hoga Thhoda Ehsaas Hoga
+Hilti Hai MatakMatak Jo Kamar Hai
+
+De De Ab Number Hai
+Baat Hoga Thoda Ehsaas Hoga
+
+Uski Ek Jhalak Machalti Hai Dhadak
+Uff Unkii Kya Baat Kare
+Naino Ka Palak Andaaz Hi Alag
+Uff Unki Kya Baat Karein
+
+Behkar Sang Sang Jo Air
+Teri Zulfon Ki Mehak Le Aati Hai
+Mere Man Mein Tu Bhar Jazbaati Tarang
+Uff Unki Kya Baat Karein -LyricsRead.com
+
+LaiJaa Haye Laija Maya
+Ailai Nii Jawani Maa
+Kaha Kaha Dulauchhau Maana
+
+Ho Maiya Aakhi Maiya Maya
+Raaton Raat Saari Ma
+Kaha Kaha Bolauchhau Bana
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Join the N-Pop Revolution</h2>
+  <div class="cta">
+    <a href="mailto:dineshtamang7263@gmail.com">Contact Us</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 One Entertainment | Email: connect@oneentertainment.com</p>
+</footer>
+
+<script>
+  function toggleLyrics() {
+    const content = document.getElementById('lyricsContent');
+    const header = document.querySelector('.lyrics-header');
+    if (content.style.display === 'block') {
+      content.style.display = 'none';
+      header.textContent = 'Show Lyrics';
+    } else {
+      content.style.display = 'block';
+      header.textContent = 'Hide Lyrics';
+    }
+  }
+</script>
+
 </body>
 </html>
