@@ -3,83 +3,260 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Entertainment - N-Pop Innovation</title>
+  <title>One Entertainment – N-Pop Innovation</title>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/727/727245.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Poppins', sans-serif;
-      margin: 0;
+      line-height: 1.6;
       color: #333;
-      background-color: #f9f9f9;
+      background: #f4f4f4;
     }
-    header {
-      background: #111;
-      color: #fff;
-      padding: 3rem 1rem;
-      text-align: center;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.1rem;
-      color: #ddd;
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
     }
     section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
+      padding: 4rem 1rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
-    h2 {
-      font-size: 2rem;
+    h1, h2, h3 {
       margin-bottom: 1rem;
       color: #111;
     }
-    .artist {
+    p {
+      margin-bottom: 1rem;
+      color: #555;
+    }
+    ul {
+      list-style: none;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: #111;
+      color: #fff;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      font-weight: 600;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    /* Button (consistent primary style) */
+    .btn-primary {
+      background: #ffd700;
+      color: #111;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: 4px;
+      transition: background 0.3s, box-shadow 0.3s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: #e5c100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      #background: linear-gradient(
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)
+        ),
+        url('hero-bg.jpg') center/cover no-repeat;
+      padding-top: 70px; /* offset for fixed header */
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      letter-spacing: 1px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      line-height: 1.4;
+    }
+
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .section-title h2 {
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+      letter-spacing: 0.5px;
+    }
+    .section-title h2::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: #ffd700;
+      display: block;
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* About & Mission */
+    .about-container {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
-      margin-top: 2rem;
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
+      align-items: center;
+    }
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+      padding-right: 1rem;
+    }
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+    .about-image img {
+      border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    .artist img {
-      width: 100%;
-      max-width: 300px;
+
+    /* Values & Pillars */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      margin-bottom: 0.75rem;
+      color: #111;
+      letter-spacing: 0.5px;
+    }
+    .card p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* Artist Section */
+    .artist-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    .artist-showcase img {
+      flex: 1;
+      min-width: 300px;
       object-fit: cover;
     }
-    .artist-details {
+    .artist-info {
       flex: 1;
-      padding: 1rem;
+      padding: 2rem;
     }
-    .cta {
-      text-align: center;
-      margin-top: 3rem;
+    .artist-info h3 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
     }
-    .cta a {
-      display: inline-block;
-      padding: 1rem 2rem;
-      background: #111;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
+    .artist-info ul {
+      list-style: none;
+      margin-top: 1rem;
     }
-    .cta a:hover {
-      background: #333;
+    .artist-info ul li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
     }
-    footer {
-      background: #111;
-      color: #ccc;
-      text-align: center;
-      padding: 2rem 1rem;
+    .artist-info ul li strong {
+      color: #111;
+    }
+
+    /* Video + Lyrics */
+    .project-media {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .project-media video {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .lyrics-dropdown {
-      margin-top: 1rem;
       border: 1px solid #ccc;
       border-radius: 5px;
       background: #fff;
@@ -87,150 +264,405 @@
     .lyrics-header {
       padding: 1rem;
       cursor: pointer;
-      background: #eee;
+      background: #f1f1f1;
       font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lyrics-header span {
+      transition: transform 0.3s;
+    }
+    .lyrics-header.open span {
+      transform: rotate(180deg);
     }
     .lyrics-content {
       display: none;
       padding: 1rem;
+      max-height: 400px;
+      overflow-y: auto;
       white-space: pre-wrap;
       font-size: 0.95rem;
+      line-height: 1.4;
     }
 
-    /* Responsive adjustments */
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .team-member {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .team-member img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    .team-member h4 {
+      margin-bottom: 0.5rem;
+      color: #111;
+      font-size: 1.1rem;
+    }
+    .team-member p {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 4rem 2rem;
+      margin-top: 2rem;
+    }
+    #contact p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+    footer a {
+      color: #ffd700;
+      font-weight: 600;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      section {
+        padding: 3rem 1rem;
+      }
+      .navbar {
+        padding: 1rem 1.5rem;
+      }
+    }
     @media (max-width: 768px) {
-      header h1 {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1rem;
+        max-width: 90%;
+      }
+      nav ul {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .about-container,
+      .artist-showcase {
+        flex-direction: column;
+      }
+      .about-text, .about-image,
+      .artist-info {
+        padding: 0;
+      }
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero h1 {
         font-size: 2rem;
       }
-      .artist {
-        flex-direction: column;
-        align-items: center;
+      .btn-primary {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
       }
-      .artist img {
-        max-width: 100%;
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      #contact {
+        padding: 3rem 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>One Entertainment</h1>
-  <p>Pioneering N-Pop innovation: blending Nepali heritage with Bollywood's global influence.</p>
-</header>
-
-<section>
-  <h2>About N-Pop</h2>
-  <p>At One Entertainment, we're crafting a new genre: N-Pop. Rooted in Nepal's traditions, elevated with Bollywood rhythms, and expressed in bilingual lyrics, N-Pop bridges cultures and connects hearts.</p>
-</section>
-
-<section>
-  <h2>Meet Our Star: Rohan Gurung</h2>
-  <div class="artist">
-    <img src="rohan.png" alt="Rohan Gurung" />
-    <div class="artist-details">
-      <h3>Rohan Gurung</h3>
-      <p>Rohan is a 20-year-old solo musician from Kathmandu, known for his captivating bilingual performances that merge Nepali melodies with Bollywood beats.</p>
-      <p><strong>Social Reach:</strong><br>
-        Instagram: 221K followers<br>
-        YouTube: 30.1K subscribers (2.3M views)<br>
-        TikTok: 142K followers (1.2M viral views)</p>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="navbar">
+      <div class="logo">One Entertainment</div>
+      <div class="menu-toggle">&#9776;</div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#values">Values</a></li>
+          <li><a href="#artist">Artist</a></li>
+          <li><a href="#project">Project</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
-</section>
+  </header>
 
-<section>
-  <h2>Our Current Project: “Unki Kya Baat Karein”</h2>
-  <p><strong>Song Description:</strong> “Unki Kya Baat Karein” is a soulful fusion of Hindi and Nepali melodies, featuring Rohan Gurung’s mesmerizing vocals. This bilingual love anthem, produced in collaboration with <strong>T-Series</strong>, blends traditional instruments and modern Bollywood beats, capturing the essence of a heartfelt, cross-cultural romance.</p>
-  <div style="margin-top:1rem;">
-    <video width="100%" height="400" controls>
-      <source src="ezyZip.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1>Welcome to One Entertainment</h1>
+    <p>Pioneering N-Pop innovation: blending Nepali heritage with Bollywood’s global influence to create a fresh South Asian genre.</p>
+    <a href="#contact" class="btn-primary">Get in Touch</a>
+  </section>
 
-  <div class="lyrics-dropdown">
-    <div class="lyrics-header" onclick="toggleLyrics()">Show Lyrics</div>
-    <div class="lyrics-content" id="lyricsContent">
-Kaise Hua Hai Ye Asar Teri Kashti Me
-Dooba Hu Sabko Bhool Ke
+  <!-- About & Mission -->
+  <section id="about">
+    <div class="section-title">
+      <h2>About One Entertainment</h2>
+    </div>
+    <div class="about-container">
+      <div class="about-text">
+        <p>One Entertainment stands at the forefront of a musical revolution. Our mission is to craft <strong>N-Pop</strong>, a unique genre that harmonizes Nepal’s rich traditional melodies with Bollywood’s modern beats. By bridging cultural heritage and contemporary appeal, we empower emerging Nepali artists to reach audiences across South Asia and beyond.</p>
+        <p>Since our inception, we have been devoted to:</p>
+        <ul>
+          <li><strong>Innovation:</strong> Pioneering a distinct musical style rooted in Nepali culture.</li>
+          <li><strong>Cultural Authenticity:</strong> Showcasing Nepal’s heritage while embracing global trends.</li>
+          <li><strong>Regional Vision:</strong> Connecting Nepali talent with millions of Bollywood enthusiasts.</li>
+        </ul>
+      </div>
+      <div class="about-image">
+        <img src="./photos/one.jpg" alt="Musical Fusion Illustration">
+      </div>
+    </div>
+  </section>
 
-Jabsay Mila Hu Tumse Dil Ki Zabardasti He
-RakhLu Mai Tumko Dhoond Ke
+  <!-- Values & Pillars Section -->
+  <section id="values" style="background: #fff;">
+    <div class="section-title">
+      <h2>Our Values & Pillars</h2>
+    </div>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+      At One Entertainment, our core values guide every decision. We stand on three strategic pillars that shape our identity and drive our vision of N-Pop.
+    </p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Innovation</h3>
+        <p>We create N-Pop by blending Nepal’s musical roots with Bollywood’s global influence. Our approach is to constantly push creative boundaries, experimenting with sound, style, and storytelling to shape a genre that’s uniquely ours.</p>
+      </div>
+      <div class="card">
+        <h3>Cultural Authenticity</h3>
+        <p>We honor Nepal’s cultural heritage—using traditional instruments like the sarangi and madal, and weaving Nepali folk themes into modern production. Authenticity is at our core, ensuring every track resonates with genuine Nepali spirit.</p>
+      </div>
+      <div class="card">
+        <h3>Regional Vision</h3>
+        <p>Our ambition is to introduce Nepali talent to the broader South Asian market. By leveraging bilingual lyrics (Nepali & Hindi) and strategic partnerships, we open doors for N-Pop to reach fans across Nepal, India, and beyond.</p>
+      </div>
+    </div>
+  </section>
 
-Uski Ek Jhalak Machalti He Dhadak
-Uff Unki Kya Baat Kare
-Naino Kaa Palak Andaz Hee Alag
-Uff Unki Kya Baat Karayy
+  <!-- Artist Showcase -->
+  <section id="artist">
+    <div class="section-title">
+      <h2>Meet Our Star: Rohan Gurung</h2>
+    </div>
+    <div class="artist-showcase">
+      <img src="./photos/rohan.png" alt="Rohan Gurung">
+      <div class="artist-info">
+        <h3>Rohan Gurung</h3>
+        <p>Age: 20 – Kathmandu, Nepal</p>
+        <p>Rohan captivates audiences with his bilingual performances, fusing Nepali melodies with Bollywood rhythms. His dynamic stage presence and cultural authenticity make him the face of N-Pop.</p>
+        <ul>
+          <li><strong>Instagram:</strong> 221K followers (avg. 5K likes/post)</li>
+          <li><strong>YouTube:</strong> 30.1K subscribers (MV “Hamro Sapana” – 2.3M views)</li>
+          <li><strong>TikTok:</strong> 142K followers (1.2M viral views)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-Beh Kar Sang Sang Jo Hawa
-Teri Zulfon Kii Mehak Lain Aati Hai
-Mere Man Mei Tuu Bhar Jazbaati Tarang
-Uff Unki Kya Baat Karein
+  <!-- Current Project -->
+  <section id="project">
+    <div class="section-title">
+      <h2>Our Current Project: “Unki Kya Baat Karein”</h2>
+    </div>
+    <div class="project-media">
+      <video controls>
+        <source src="./videos/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="lyrics-dropdown" id="lyricsSection">
+        <div class="lyrics-header" onclick="toggleLyrics()">
+          <span>Show Lyrics</span>
+          <span>▼</span>
+        </div>
+        <div class="lyrics-content" id="lyricsContent">
+Kaise Hua Hai Ye Asar Teri Kashti Me  
+Dooba Hu Sabko Bhool Ke  
 
-Leja Haye Ljaa Maya
-Ailai Nii Jawani Mqa KahaKaha Dulaucchau Mana
-Ho Maiya Aakkhi Maiya Maya LyricsRead.com
-Raaton Raat Sari Ma Kaha Kaha Bolaucchau Bana
+Jabsay Mila Hu Tumse Dil Ki Zabardasti He  
+RakhLu Mai Tumko Dhoond Ke  
 
-LeKar Aaun Mai Jo Pasand Ho DeDe AwaaZ
-Karde Bas Mitthi Mitthi Baate
-Ban Jaaun Raja Tuu Bhi Ban Meri Raani
-Aaj Ho Jaye Dil Kii Mulakatein
+Uski Ek Jhalak Machalti He Dhadak  
+Uff Unki Kya Baat Kare  
+Naino Kaa Palak Andaz Hee Alag  
+Uff Unni Kya Baat Karein  
 
-Hilti Hai Matak Matak Jo Kamar Hai
-DeDe Ab No. Hai
-Baat Hoga Thhoda Ehsaas Hoga
-Hilti Hai MatakMatak Jo Kamar Hai
+Beh Kar Sang Sang Jo Hawa  
+Teri Zulfon Kii Mehak Lain Aati Hai  
+Mere Man Mei Tuu Bhar Jazbaati Tarang  
+Uff Unni Kya Baat Karein  
 
-De De Ab Number Hai
-Baat Hoga Thoda Ehsaas Hoga
+Leja Haye Ljaa Maya  
+Ailai Nii Jawani Mqa KahaKaha Dulaucchau Mana  
+Ho Maiya Aakkhi Maiya Maya LyricsRead.com  
+Raaton Raat Sari Ma Kaha Kaha Bolaucchau Bana  
 
-Uski Ek Jhalak Machalti Hai Dhadak
-Uff Unkii Kya Baat Kare
-Naino Ka Palak Andaaz Hi Alag
-Uff Unki Kya Baat Karein
+LeKar Aaun Mai Jo Pasand Ho DeDe AwaaZ  
+Karde Bas Mitthi Mitthi Baate  
+Ban Jaaun Raja Tuu Bhi Ban Meri Raani  
+Aaj Ho Jaye Dil Kii Mulakatein  
 
-Behkar Sang Sang Jo Air
-Teri Zulfon Ki Mehak Le Aati Hai
-Mere Man Mein Tu Bhar Jazbaati Tarang
-Uff Unki Kya Baat Karein -LyricsRead.com
+Hilti Hai Matak Matak Jo Kamar Hai  
+DeDe Ab No. Hai  
+Baat Hoga Thhoda Ehsaas Hoga  
+Hilti Hai MatakMatak Jo Kamar Hai  
 
-LaiJaa Haye Laija Maya
-Ailai Nii Jawani Maa
-Kaha Kaha Dulauchhau Maana
+De De Ab Number Hai  
+Baat Hoga Thoda Ehsaas Hoga  
 
-Ho Maiya Aakhi Maiya Maya
-Raaton Raat Saari Ma
+Uski Ek Jhalak Machalti Hai Dhadak  
+Uff Unnii Kya Baat Kare  
+Naino Ka Palak Andaaz Hi Alag  
+Uff Unnii Kya Baat Karein  
+
+Behkar Sang Sang Jo Air  
+Teri Zulfon Ki Mehak Le Aati Hai  
+Mere Man Mein Tu Bhar Jazbaati Tarang  
+Uff Unnii Kya Baat Karein -LyricsRead.com  
+
+LaiJaa Haye Laija Maya  
+Ailai Nii Jawani Maa  
+Kaha Kaha Dulauchhau Maana  
+
+Ho Maiya Aakhi Maiya Maya  
+Raaton Raat Saari Ma  
 Kaha Kaha Bolauchhau Bana
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <h2>Join the N-Pop Revolution</h2>
-  <div class="cta">
-    <a href="mailto:dineshtamang7263@gmail.com">Contact Us</a>
-  </div>
-</section>
+  <!-- Team Section -->
+  <section id="team" style="background: #fff;">
+    <div class="section-title">
+      <h2>Our Team</h2>
+    </div>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+      A dedicated group of industry experts working behind the scenes to make N-Pop a worldwide phenomenon.
+    </p>
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="./photos/dinesh.png" alt="Dinesh Tamang">
+        <h4>Dinesh Tamang</h4>
+        <p>CEO – Vision & Partnership Lead</p>
+      </div>
+      <div class="team-member">
+        <img src="./photos/shreshta.png" alt="Dinesh Shrestha">
+        <h4>Dinesh Shrestha</h4>
+        <p>A&R Lead – Talent Scouting & Artist Development</p>
+      </div>
+      <div class="team-member">
+        <img src="./photos/vidhya.png" alt="Vidhya Shahi">
+        <h4>Vidhya Shahi</h4>
+        <p>Marketing Strategist – Digital & Social Campaigns</p>
+      </div>
+      <div class="team-member">
+        <img src="./photos/alok.png" alt="Alok Subedi">
+        <h4>Alok Subedi</h4>
+        <p>Legal & Rights – Contracts & Copyright Management</p>
+      </div>
+      <div class="team-member">
+        <img src="./photos/preksha.png" alt="Preksha Shahi">
+        <h4>Preksha Shahi</h4>
+        <p>Finance Manager – Budget Planning & Forecasting</p>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  <p>&copy; 2025 One Entertainment | Email: connect@oneentertainment.com</p>
-</footer>
+  <!-- Contact / CTA Section -->
+  <section id="contact">
+    <div class="section-title">
+      <h2>Join the N-Pop Revolution</h2>
+    </div>
+    <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">
+      Ready to be part of a groundbreaking musical movement? Whether you’re an aspiring artist, a collaborator, or a fan, reach out to learn more about One Entertainment and our N-Pop journey.
+    </p>
+    <div style="text-align: center;">
+      <a href="mailto:connect@oneentertainment.com" class="btn-primary">Contact Us</a>
+    </div>
+  </section>
 
-<script>
-  function toggleLyrics() {
-    const content = document.getElementById('lyricsContent');
-    const header = document.querySelector('.lyrics-header');
-    if (content.style.display === 'block') {
-      content.style.display = 'none';
-      header.textContent = 'Show Lyrics';
-    } else {
-      content.style.display = 'block';
-      header.textContent = 'Hide Lyrics';
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 One Entertainment. All rights reserved.</p>
+    <p>Email: <a href="mailto:connect@oneentertainment.com">connect@oneentertainment.com</a></p>
+    <p>Follow us on  
+      <a href="https://instagram.com/OneEnt_NPop" target="_blank">Instagram</a>,  
+      <a href="https://youtube.com/oneent" target="_blank">YouTube</a>,  
+      <a href="https://tiktok.com/@oneent_npop" target="_blank">TikTok</a>
+    </p>
+  </footer>
+
+  <!-- JavaScript for Lyrics Toggle & Mobile Menu -->
+  <script>
+    function toggleLyrics() {
+      const content = document.getElementById('lyricsContent');
+      const header = document.querySelector('.lyrics-header');
+      const arrow = header.querySelector('span:last-child');
+      if (content.style.display === 'block') {
+        content.style.display = 'none';
+        header.querySelector('span:first-child').textContent = 'Show Lyrics';
+        arrow.textContent = '▼';
+        header.classList.remove('open');
+      } else {
+        content.style.display = 'block';
+        header.querySelector('span:first-child').textContent = 'Hide Lyrics';
+        arrow.textContent = '▲';
+        header.classList.add('open');
+      }
     }
-  }
-</script>
+
+    // Mobile Menu Toggle
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      const navUl = document.querySelector('nav ul');
+      if (navUl.style.display === 'flex') {
+        navUl.style.display = 'none';
+      } else {
+        navUl.style.display = 'flex';
+        navUl.style.flexDirection = 'column';
+        navUl.style.backgroundColor = '#111';
+        navUl.style.position = 'absolute';
+        navUl.style.top = '60px';
+        navUl.style.right = '2rem';
+        navUl.style.padding = '1rem';
+        navUl.style.borderRadius = '4px';
+        navUl.style.gap = '1rem';
+      }
+    });
+  </script>
 
 </body>
 </html>
