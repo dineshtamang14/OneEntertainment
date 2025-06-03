@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Entertainment – Show Ticket Booking</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/727/727245.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f4f4f4;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; height: auto; }
+    section { padding: 4rem 1rem; max-width: 1200px; margin: 0 auto; }
+    h1, h2, h3 { margin-bottom: 1rem; color: #111; }
+    p { margin-bottom: 1rem; color: #555; }
+    ul { list-style: none; }
+
+    /* Header & Nav */
+    header {
+      background-color: #111;
+      color: #fff;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      font-weight: 600;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: #ffd700;
+      color: #111;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: 4px;
+      transition: background 0.3s, box-shadow 0.3s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: #e5c100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 80vh;
+      #background: linear-gradient(
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)
+        ),
+        url('hero-bg.jpg') center/cover no-repeat;
+      padding-top: 70px;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      letter-spacing: 1px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      line-height: 1.4;
+    }
+
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .section-title h2 {
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+      letter-spacing: 0.5px;
+    }
+    .section-title h2::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: #ffd700;
+      display: block;
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* Shows Section */
+    .shows-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .show-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .show-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .show-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .show-content {
+      padding: 1.5rem;
+    }
+    .show-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .show-content p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .show-details {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    /* Booking Form */
+    .booking-form {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .booking-form label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #111;
+    }
+    .booking-form input,
+    .booking-form select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+    .booking-form input:focus,
+    .booking-form select:focus {
+      outline: none;
+      border-color: #ffd700;
+      box-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+    }
+    .booking-form .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .form-row .form-group {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+    footer a {
+      color: #ffd700;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      section { padding: 3rem 1rem; }
+      .navbar { padding: 1rem 1.5rem; }
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1rem; max-width: 90%; }
+      nav ul { display: none; }
+      .menu-toggle { display: block; }
+      .shows-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2rem; }
+      .btn-primary { padding: 0.5rem 1.5rem; font-size: 0.9rem; }
+      .section-title h2 { font-size: 2rem; }
+      .booking-form { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header & Navigation -->
+  <header>
+    <div class="navbar">
+      <div class="logo">One Entertainment</div>
+      <div class="menu-toggle">&#9776;</div>
+      <nav>
+        <ul>
+          <li><a href="#shows">Shows</a></li>
+          <li><a href="#booking">Book Tickets</a></li>
+          <li><a href="./index.html">Home</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1>Book Your Show Tickets</h1>
+    <p>Secure your spot at the next N-Pop concert—experience Rohan Gurung live on stage!</p>
+    <a href="#shows" class="btn-primary">View Shows</a>
+  </section>
+
+  <!-- Shows Section -->
+  <section id="shows">
+    <div class="section-title">
+      <h2>Upcoming Shows</h2>
+    </div>
+    <div class="shows-list">
+      <!-- Show Card 1 -->
+      <div class="show-card">
+        <img src="./photos/ktm.jpg" alt="Rohan Gurung Live">
+        <div class="show-content">
+          <h3>Rohan Gurung Live in Kathmandu</h3>
+          <p class="show-details">
+            <strong>Date:</strong> July 15, 2025<br>
+            <strong>Time:</strong> 7:00 PM<br>
+            <strong>Venue:</strong> Kathmandu International Exhibition Center
+          </p>
+          <p>Join Rohan Gurung for an unforgettable night of N-Pop fusion—witness his bilingual melodies and Bollywood beats live on stage. Don’t miss out on the musical revolution!</p>
+          <a href="#booking" class="btn-primary">Book Now</a>
+        </div>
+      </div>
+
+      <!-- Show Card 2 -->
+      <div class="show-card">
+        <img src="./photos/pokhara.jpg" alt="Rohan Gurung Valley Performance">
+        <div class="show-content">
+          <h3>Rohan Gurung at Pokhara Valley Fest</h3>
+          <p class="show-details">
+            <strong>Date:</strong> August 5, 2025<br>
+            <strong>Time:</strong> 6:00 PM<br>
+            <strong>Venue:</strong> Pokhara Valley Grounds
+          </p>
+          <p>Experience a spectacular evening at Pokhara Valley Fest with Rohan Gurung. Immerse yourself in melodies that bridge Nepali heritage and Bollywood rhythms under the stars.</p>
+          <a href="#booking" class="btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form Section -->
+  <section id="booking" style="background: #fff;">
+    <div class="section-title">
+      <h2>Book Your Tickets</h2>
+    </div>
+    <form class="booking-form" id="ticketForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+977-98XXXXXXXX" required>
+        </div>
+        <div class="form-group">
+          <label for="showSelect">Select Show</label>
+          <select id="showSelect" name="showSelect" required>
+            <option value="" disabled selected>Choose an event</option>
+            <option value="Kathmandu">Rohan Gurung Live in Kathmandu</option>
+            <option value="Pokhara">Rohan Gurung at Pokhara Valley Fest</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ticketCategory">Ticket Category</label>
+          <select id="ticketCategory" name="ticketCategory" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="VIP">VIP – NPR 3,000</option>
+            <option value="General">General Admission – NPR 1,500</option>
+            <option value="Balcony">Balcony – NPR 800</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ticketQuantity">Number of Tickets</label>
+          <input type="number" id="ticketQuantity" name="ticketQuantity" min="1" max="10" value="1" required>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <button type="submit" class="btn-primary">Confirm Booking</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>&copy; 2025 One Entertainment. All rights reserved.</p>
+    <p>Email: <a href="mailto:connect@oneentertainment.com">connect@oneentertainment.com</a></p>
+    <p>Follow us on  
+      <a href="https://instagram.com/OneEnt_NPop" target="_blank">Instagram</a>,  
+      <a href="https://youtube.com/oneent" target="_blank">YouTube</a>,  
+      <a href="https://tiktok.com/@oneent_npop" target="_blank">TikTok</a>
+    </p>
+  </footer>
+
+  <!-- JavaScript for Form Handling & Mobile Menu -->
+  <script>
+    // Mobile Menu Toggle
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      const navUl = document.querySelector('nav ul');
+      if (navUl.style.display === 'flex') {
+        navUl.style.display = 'none';
+      } else {
+        navUl.style.display = 'flex';
+        navUl.style.flexDirection = 'column';
+        navUl.style.backgroundColor = '#111';
+        navUl.style.position = 'absolute';
+        navUl.style.top = '60px';
+        navUl.style.right = '2rem';
+        navUl.style.padding = '1rem';
+        navUl.style.borderRadius = '4px';
+        navUl.style.gap = '1rem';
+      }
+    });
+
+    // Simple Form Submission Handler
+    document.getElementById('ticketForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const show = document.getElementById('showSelect').value;
+      const category = document.getElementById('ticketCategory').value;
+      const quantity = document.getElementById('ticketQuantity').value;
+
+      if (!name || !email || !phone || !show || !category || !quantity) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      // In a real application, you would send this data to a server.
+      alert(`Thank you, ${name}! Your booking for ${quantity} ${category} ticket(s) to "${show}" is confirmed. A confirmation email has been sent to ${email}.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
